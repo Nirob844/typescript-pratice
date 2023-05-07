@@ -83,7 +83,7 @@ const products1: ProductList = [
 
 const totalCost: number = calculateTotalCost(products1);
 
-console.log(`The total cost of all products is: ${totalCost}`);
+//console.log(`The total cost of all products is: ${totalCost}`);
 
 
 /*
@@ -98,6 +98,78 @@ const sumOfEvenNumbers: number = evenNumbers.reduce((acc, curr) => acc + curr, 0
 
 //console.log(sumOfEvenNumbers); // Output: 30
 
+/*
+Create an interface called Person that includes properties for name (string), age (number), and email (string). Then create an array of Person objects and write a function that takes the array and a string email as parameters, and returns the Person object that matches the email or null if no match is found.
+*/
+
+interface Person {
+    name: string;
+    age: number;
+    email: string;
+}
+
+const persons: Person[] = [
+    {
+        name: "Alice",
+        age: 25,
+        email: "alice@example.com",
+    },
+    {
+        name: "Bob",
+        age: 30,
+        email: "bob@example.com",
+    },
+    {
+        name: "Charlie",
+        age: 35,
+        email: "charlie@example.com",
+    },
+];
 
 
+function findPersonByEmail(persons: Person[], email: string): Person | null {
+    const result = persons.find((person) => person.email === email);
+    return result ? result : null;
+}
 
+const emailToFind = "bob@example.com";
+const person = findPersonByEmail(persons, emailToFind);
+
+if (person) {
+    // console.log(`Found person with email ${emailToFind}: ${person.name}, ${person.age}`);
+} else {
+    //console.log(`No person found with email ${emailToFind}`);
+}
+
+
+/*
+Create a TypeScript program that declares an array of numbers. Use the spread  operator to pass the elements of the array as arguments to a function that finds the minimum and maximum values of the array. Use destructuring to assign the minimum and maximum values to separate variables, and log them to the console.
+*/
+
+function findMinMax(...nums: number[]): [number, number] {
+    const min = Math.min(...nums);
+    const max = Math.max(...nums);
+    return [min, max];
+}
+
+const nums = [5, 3, 8, 1, 9, 2];
+const [min, max] = findMinMax(...nums);
+
+console.log(`Minimum value: ${min}`);
+console.log(`Maximum value: ${max}`);
+
+/*
+Create a TypeScript program that declares a function that takes a string parameter with a literal type of "red", "green", or "blue", and an optional boolean parameter. If the boolean parameter is true, log the string parameter in uppercase. If the boolean parameter is false or not provided, log the string parameter in lowercase.
+*/
+
+function logColor(color: "red" | "green" | "blue", toUpperCase?: boolean): void {
+    if (toUpperCase) {
+        console.log(color.toUpperCase());
+    } else {
+        console.log(color.toLowerCase());
+    }
+}
+
+logColor("red");            // logs "red"
+logColor("green", true);    // logs "GREEN"
+logColor("blue", false);    // logs "blue"
