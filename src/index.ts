@@ -56,10 +56,48 @@ const products: Product[] = [
     { id: 4, name: "Product D", price: 40, category: "Category 2" },
 ];
 
-function filterProducts<T extends keyof Product>(products: Product[], criterion: T, value: Product[T]): Product[] {
+function filterProducts<T extends keyof Product>(products: Product[], criterion: T, value: Product[T]) {
     return products.filter(product => product[criterion] === value);
 }
 
 const filteredProducts = filterProducts(products, "category", "Category 1");
 
-console.log(filteredProducts);
+//console.log(filteredProducts);
+
+
+/*
+Suppose you have an array of tuples, where each tuple represents a product and contains the product name, price, and quantity. Write a TypeScript function that calculates the total cost of all the products in the array, using a generic type for the tuple and a type alias for the array.
+*/
+
+type Product1 = [string, number, number];
+type ProductList = Product1[];
+
+function calculateTotalCost(products: ProductList): number {
+    return products.reduce((total, [_, price, quantity]) => total + price * quantity, 0);
+}
+const products1: ProductList = [
+    ["Product A", 10.0, 2],
+    ["Product B", 5.0, 4],
+    ["Product C", 2.5, 3],
+];
+
+const totalCost: number = calculateTotalCost(products1);
+
+console.log(`The total cost of all products is: ${totalCost}`);
+
+
+/*
+Suppose you have an array of numbers in TypeScript, and you want to find the sum of all the even numbers in the array. How would you approach this problem and write code to solve it?
+*/
+
+const numbers: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+const evenNumbers: number[] = numbers.filter(num => num % 2 === 0);
+
+const sumOfEvenNumbers: number = evenNumbers.reduce((acc, curr) => acc + curr, 0);
+
+//console.log(sumOfEvenNumbers); // Output: 30
+
+
+
+
